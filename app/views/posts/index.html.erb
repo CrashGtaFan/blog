@@ -1,0 +1,26 @@
+<center><%= will_paginate @posts, renderer: BootstrapPagination::Rails %></center>
+<% @posts.each do |post| %>
+  <div class="post_wrapper">
+    <div class="media">
+      <div class="media-left">
+        <p class="image"><%= image_tag post.image.url(:thumb), class: "img-rounded" %></p>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><%= link_to post.title, post %></h3>
+        <p class="date"><%= post.created_at.strftime("%B, %d, %Y") %></p>
+        <p><b>Category:</b>
+        <% post.categories.each do |category| %>
+          <%= category.name %>
+        <% end %></p>
+        <p>
+        <% if current_user %>
+          <%= link_to favourite_post_path(post), class: favourite_post(post) do %>
+            <p>Like <i class = "glyphicon glyphicon-heart"></i></p>
+          <% end %>
+        <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+<center><%= will_paginate @posts, renderer: BootstrapPagination::Rails %></center>

@@ -1,0 +1,17 @@
+<div id="page_wrapper">
+  <h1 class = "title">
+    <%= @user.name %>
+    <%= @user.lastname %>
+  </h1>
+  <b>Full name:</b><p><%= @user.name %>  <%= @user.lastname %>.</p>
+  <b>Email:</b><p><%= @user.email %>.</p>
+
+  <p>
+    <%= image_tag @user.avatar.url(:medium) %>
+  </p>
+
+  <p>
+    <button class="button"><%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning' %></button>
+  </p>
+  
+</div>

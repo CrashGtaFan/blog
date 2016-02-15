@@ -1,0 +1,32 @@
+<center><%= will_paginate @users, renderer: BootstrapPagination::Rails %></center>
+<div id="page_wrapper">
+  <table class="table table-striped">
+   <tr>
+     <td><b>#</b></td>
+     <td><b>Full name</b></td>
+     <td><b>Email</b></td>
+     <td><b>Avatar</b></td>
+     <td></td>
+   </tr>
+   <% @users.each do |user| %>
+    <div class="user_wrapper">
+      <tr>
+        <td><%=user.id%></td>
+        <td><%=link_to user.name + " " + user.lastname, user %></td>
+        <td><%=user.email%></td>
+        <td><%=image_tag user.avatar.url(:avat), class: "img-circle"%></td>
+        <td>
+          <h4>
+          <% if user.admin %>
+            <%= link_to 'make user', change_permission_user_path(user), class: "label label-primary"%>
+          <% else %>
+            <h4><%= link_to 'make admin', change_permission_user_path(user), class: "label label-warning" %>
+          <% end %>
+            <%= link_to 'Delete', user_path(user), class: " label label-danger", method: :delete, data: {confirm: 'Are you sure?'} %></h4>
+        </td>
+      </tr>
+    </div>
+  <% end %>
+  </table>
+</div>
+<center><%= will_paginate @users, renderer: BootstrapPagination::Rails %></center>
